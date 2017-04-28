@@ -1,9 +1,5 @@
 ﻿using Our.Umbraco.LocalizedEditorModels.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Our.Umbraco.LocalizedEditorModels.Services
 {
@@ -13,6 +9,18 @@ namespace Our.Umbraco.LocalizedEditorModels.Services
         {
             var areaAlias = "property_labels";
 
+            return GetLocalizationKeys(propertyAlias, contentTypeAlias, areaAlias);
+        }
+
+        public IEnumerable<LocalizationKey> GetLocalizationKeysForPropertyDescription(string propertyAlias, string contentTypeAlias)
+        {
+            var areaAlias = "property_descriptions";
+
+            return GetLocalizationKeys(propertyAlias, contentTypeAlias, areaAlias);
+        }
+
+        private IEnumerable<LocalizationKey> GetLocalizationKeys(string propertyAlias, string contentTypeAlias, string areaAlias)
+        {
             return new LocalizationKey[] {
                 new LocalizationKey(string.Format("{0}_{1}", contentTypeAlias, areaAlias), propertyAlias),
                 new LocalizationKey(areaAlias, propertyAlias)
