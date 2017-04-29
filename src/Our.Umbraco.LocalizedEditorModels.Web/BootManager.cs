@@ -1,8 +1,6 @@
 ﻿using Our.Umbraco.LocalizedEditorModels.Services;
 using Our.Umbraco.LocalizedEditorModels.Web.Configuration;
-using System;
 using System.Configuration;
-using System.Globalization;
 using System.Threading;
 using System.Web.Http.Filters;
 using Umbraco.Core;
@@ -15,7 +13,6 @@ namespace Our.Umbraco.LocalizedEditorModels.Web
     public class BootManager : ApplicationEventHandler
     {
         private IConfigurationSettings Config = NameValueCollectionConfigurationSettings.GetConfig(ConfigurationManager.AppSettings);
-
 
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
