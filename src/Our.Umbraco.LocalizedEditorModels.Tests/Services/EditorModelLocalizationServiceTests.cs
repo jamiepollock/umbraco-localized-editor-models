@@ -53,34 +53,32 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
 
 
         [Test]
-        public void LocalizeModel_Returns_Localized_Property_Labels()
+        public void LocalizeModel_Localizes_Property_Labels()
         {
-            var tabs = new List<Tab<ContentPropertyDisplay>>();
-
             var props = new List<ContentPropertyDisplay>()
+            {
+                new ContentPropertyDisplay
                 {
-                    new ContentPropertyDisplay
-                    {
-                        Alias = "bgColor",
-                        Label = "Background Color",
-                        HideLabel = false
-                    },
-                    new ContentPropertyDisplay
-                    {
-                        Alias = "favoriteNewsItems",
-                        Label = "Favorite New Items",
-                        HideLabel = false
-                    }
-                };
-
-                tabs.Add(new Tab<ContentPropertyDisplay>()
-                    {
-                        Alias = "Tab",
-                        Label = "Tab",
-                        Properties = props
-                    });
-
-
+                    Alias = "bgColor",
+                    Label = "Background Color",
+                    HideLabel = false
+                },
+                new ContentPropertyDisplay
+                {
+                    Alias = "favoriteNewsItems",
+                    Label = "Favorite New Items",
+                    HideLabel = false
+                }
+            };
+            var tabs = new List<Tab<ContentPropertyDisplay>>
+            {
+                new Tab<ContentPropertyDisplay>()
+                {
+                    Alias = "Tab",
+                    Label = "Tab",
+                    Properties = props
+                }
+            };
 
             var model = new ContentItemDisplay()
             {
@@ -92,6 +90,46 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
 
             Assert.AreEqual("Text Page Background Colour", model.Properties.FirstOrDefault(x => x.Alias == "bgColor").Label);
             Assert.AreEqual("Favourite News Items", model.Properties.FirstOrDefault(x => x.Alias == "favoriteNewsItems").Label);
+        }
+
+        [Test]
+        public void LocalizeModel_Ignores_Property_Which_Have_Hidden_Labels()
+        {
+            var props = new List<ContentPropertyDisplay>()
+            {
+                new ContentPropertyDisplay
+                {
+                    Alias = "bgColor",
+                    Label = "Background Color",
+                    HideLabel = false
+                },
+                new ContentPropertyDisplay
+                {
+                    Alias = "favoriteNewsItems",
+                    Label = "Favorite New Items",
+                    HideLabel = true
+                }
+            };
+            var tabs = new List<Tab<ContentPropertyDisplay>>
+            {
+                new Tab<ContentPropertyDisplay>()
+                {
+                    Alias = "Tab",
+                    Label = "Tab",
+                    Properties = props
+                }
+            };
+
+            var model = new ContentItemDisplay()
+            {
+                ContentTypeAlias = "textPage",
+                Tabs = tabs
+            };
+
+            _editorModelLocalizationService.LocalizeModel(model);
+
+            Assert.AreEqual("Text Page Background Colour", model.Properties.FirstOrDefault(x => x.Alias == "bgColor").Label);
+            Assert.AreEqual("Favorite New Items", model.Properties.FirstOrDefault(x => x.Alias == "favoriteNewsItems").Label);
         }
     }
 }
