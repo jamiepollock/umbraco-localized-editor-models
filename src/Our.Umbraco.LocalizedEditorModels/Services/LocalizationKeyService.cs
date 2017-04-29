@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Our.Umbraco.LocalizedEditorModels.Services
 {
-    internal class EditorModelLocalizationKeyService
+    internal class LocalizationKeyService
     {
         const string _propertyLabelsAreaAlias = "property_labels";
         const string _propertyDescriptionsAreaAlias = "property_descriptions";

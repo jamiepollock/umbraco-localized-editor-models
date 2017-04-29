@@ -10,7 +10,7 @@ using Umbraco.Core.Services;
 namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
 {
     [TestFixture]
-    public class EditorModelLocalizationServiceTests
+    public class LocalizationKeyTextServiceTests
     {
         [Test]
         public void LocalizeKey_Returns_Value_If_Found()
@@ -32,7 +32,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
                         }
                     }
                 }, Mock.Of<ILogger>());
-            var editorModelLocalizationService = new EditorModelLocalizationService(textService, expectedCulture);
+            var editorModelLocalizationService = new LocalizationKeyTextService(textService, expectedCulture);
             var localizationKey = new LocalizationKey("property_labels", "bgColor");
 
             var localizedText = editorModelLocalizationService.LocalizeKey(localizationKey);
@@ -62,7 +62,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
                         }
                     }
                 }, Mock.Of<ILogger>());
-            var editorModelLocalizationService = new EditorModelLocalizationService(textService, expectedCulture);
+            var editorModelLocalizationService = new LocalizationKeyTextService(textService, expectedCulture);
             var localizationKey = new LocalizationKey("property_labels", "bgColor");
 
             var localizedText = editorModelLocalizationService.LocalizeKey(localizationKey);
@@ -70,9 +70,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
             var expectedText = string.Format("[{0}]", localizationKey.KeyAlias);
             Assert.AreEqual(expectedText, localizedText);
         }
-
-
-
+        
         [Test]
         public void LocalizeFirstAvailableKey_Returns_First_Found_Value()
         {
@@ -101,7 +99,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
                         }
                     }
                 }, Mock.Of<ILogger>());
-            var editorModelLocalizationService = new EditorModelLocalizationService(textService, expectedCulture);
+            var editorModelLocalizationService = new LocalizationKeyTextService(textService, expectedCulture);
             var localizationKeys = new LocalizationKey[] {
                 new LocalizationKey("textPage_property_labels", "bgColor"),
                 new LocalizationKey("property_labels", "bgColor")
@@ -125,7 +123,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
                         expectedCulture, new Dictionary<string, IDictionary<string, string>>()
                     }
                 }, Mock.Of<ILogger>());
-            var editorModelLocalizationService = new EditorModelLocalizationService(textService, expectedCulture);
+            var editorModelLocalizationService = new LocalizationKeyTextService(textService, expectedCulture);
             var localizationKeys = new LocalizationKey[] {
                 new LocalizationKey("textPage_property_labels", "bgColor"),
                 new LocalizationKey("property_labels", "bgColor")
@@ -149,7 +147,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
                         expectedCulture, new Dictionary<string, IDictionary<string, string>>()
                     }
                 }, Mock.Of<ILogger>());
-            var editorModelLocalizationService = new EditorModelLocalizationService(textService, expectedCulture);
+            var editorModelLocalizationService = new LocalizationKeyTextService(textService, expectedCulture);
             var localizationKeys = new LocalizationKey[] {
                 new LocalizationKey("textPage_property_labels", "bgColor"),
                 new LocalizationKey("property_labels", "bgColor")

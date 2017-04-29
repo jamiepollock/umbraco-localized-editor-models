@@ -5,11 +5,11 @@ using Umbraco.Core.Services;
 
 namespace Our.Umbraco.LocalizedEditorModels.Services
 {
-    internal class EditorModelLocalizationService
+    internal class LocalizationKeyTextService
     {
         private readonly ILocalizedTextService _localizedTextService;
         private readonly CultureInfo _backofficeUserCultureInfo;
-        public EditorModelLocalizationService(ILocalizedTextService localizedTextService, CultureInfo backofficeUserCultureInfo)
+        public LocalizationKeyTextService(ILocalizedTextService localizedTextService, CultureInfo backofficeUserCultureInfo)
         {
             _localizedTextService = localizedTextService;
             _backofficeUserCultureInfo = backofficeUserCultureInfo;

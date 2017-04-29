@@ -5,12 +5,12 @@ using System.Linq;
 namespace Our.Umbraco.LocalizedEditorModels.Tests
 {
     [TestFixture]
-    public class EditorModelLocalizationKeyServiceTests
+    public class LocalizationKeyServiceTests
     {
         [Test]
         public void Get_Property_Label_Keys()
         {
-            var service = new EditorModelLocalizationKeyService();
+            var service = new LocalizationKeyService();
 
             var keys = service.GetLocalizationKeysForPropertyLabel("pageTitle", "homePage");
             
@@ -22,7 +22,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests
         [Test]
         public void Get_Property_Description_Keys()
         {
-            var service = new EditorModelLocalizationKeyService();
+            var service = new LocalizationKeyService();
 
             var keys = service.GetLocalizationKeysForPropertyDescription("pageTitle", "homePage");
 
@@ -34,7 +34,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests
         [Test]
         public void Get_Tab_Label_Keys()
         {
-            var service = new EditorModelLocalizationKeyService();
+            var service = new LocalizationKeyService();
 
             var keys = service.GetLocalizationKeysForTabLabel("Content", "homePage");
 
