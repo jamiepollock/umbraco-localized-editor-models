@@ -1,11 +1,11 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Our.Umbraco.LocalizedEditorModels.Services;
-using System.Globalization;
-using Umbraco.Core.Services;
-using Umbraco.Core.Logging;
-using System.Collections.Generic;
 using Our.Umbraco.LocalizedEditorModels.Models;
+using Our.Umbraco.LocalizedEditorModels.Services;
+using System.Collections.Generic;
+using System.Globalization;
+using Umbraco.Core.Logging;
+using Umbraco.Core.Services;
 
 namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
 {
@@ -69,6 +69,71 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
 
             var expectedText = string.Format("[{0}]", localizationKey.KeyAlias);
             Assert.AreEqual(expectedText, localizedText);
+        }
+
+
+
+        [Test]
+        public void LocalizeFirstAvailableKey_Returns_First_Found_Value()
+        {
+            var defaultCulture = CultureInfo.GetCultureInfo("en-US");
+            var expectedCulture = CultureInfo.GetCultureInfo("en-GB");
+
+            var textService = new LocalizedTextService(
+                new Dictionary<CultureInfo, IDictionary<string, IDictionary<string, string>>>
+                {
+                    {
+                        expectedCulture, new Dictionary<string, IDictionary<string, string>>
+                        {
+
+                            {
+                                "property_labels", new Dictionary<string, string>
+                                {
+                                    {"bgColor", "Background Color"},
+                                }
+                            },
+                            {
+                                "textPage_property_labels", new Dictionary<string, string>
+                                {
+                                    {"bgColor", "Text Page Background Color"},
+                                }
+                            }
+                        }
+                    }
+                }, Mock.Of<ILogger>());
+            var editorModelLocalizationService = new EditorModelLocalizationService(textService, expectedCulture);
+            var localizationKeys = new LocalizationKey[] {
+                new LocalizationKey("textPage_property_labels", "bgColor"),
+                new LocalizationKey("property_labels", "bgColor")
+            };
+
+            var localizedText = editorModelLocalizationService.LocalizeFirstAvailableKey(localizationKeys);
+
+            Assert.AreEqual("Text Page Background Color", localizedText);
+        }
+
+        [Test]
+        public void LocalizeFirstAvailableKey_Returns_DefaultValue_If_Not_Found()
+        {
+            var defaultCulture = CultureInfo.GetCultureInfo("en-US");
+            var expectedCulture = CultureInfo.GetCultureInfo("en-GB");
+
+            var textService = new LocalizedTextService(
+                new Dictionary<CultureInfo, IDictionary<string, IDictionary<string, string>>>
+                {
+                    {
+                        expectedCulture, new Dictionary<string, IDictionary<string, string>>()
+                    }
+                }, Mock.Of<ILogger>());
+            var editorModelLocalizationService = new EditorModelLocalizationService(textService, expectedCulture);
+            var localizationKeys = new LocalizationKey[] {
+                new LocalizationKey("textPage_property_labels", "bgColor"),
+                new LocalizationKey("property_labels", "bgColor")
+            };
+
+            var localizedText = editorModelLocalizationService.LocalizeFirstAvailableKey(localizationKeys);
+
+            Assert.AreEqual(default(string), localizedText);
         }
     }
 }
