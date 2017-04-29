@@ -7,11 +7,17 @@ namespace Our.Umbraco.LocalizedEditorModels.Services
     {
         private readonly LocalizationKeyService _keyService;
         private readonly LocalizationKeyTextService _keyTextService;
+        private readonly IPropertyDescriptionFormatService _propertyDescriptionFormatService;
 
-        public EditorModelLocalizationService(LocalizationKeyService keyService, LocalizationKeyTextService keyTextService)
+        public EditorModelLocalizationService(LocalizationKeyService keyService, LocalizationKeyTextService keyTextService) : this(keyService, keyTextService, new DefaultPropertyDescriptionFormatService())
+        {
+        }
+
+        public EditorModelLocalizationService(LocalizationKeyService keyService, LocalizationKeyTextService keyTextService, IPropertyDescriptionFormatService propertyDescriptionFormatService)
         {
             _keyService = keyService;
             _keyTextService = keyTextService;
+            _propertyDescriptionFormatService = propertyDescriptionFormatService;
         }
 
         internal void LocalizeModel<T>(ListViewAwareContentItemDisplayBase<ContentPropertyDisplay, T> model) where T : IContentBase
@@ -28,7 +34,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Services
 
                     if (string.IsNullOrWhiteSpace(description) == false)
                     {
-                        property.Description = description;
+                        property.Description = _propertyDescriptionFormatService.Format(description);
                     }
                 }
             }

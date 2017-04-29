@@ -209,6 +209,7 @@
     <Compile Include="Services\EditorModelLocalizationService.cs" />
     <Compile Include="Services\LocalizationKeyService.cs" />
     <Compile Include="Services\LocalizationKeyTextService.cs" />
+    <Compile Include="Services\PropertyDescriptionFormatServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

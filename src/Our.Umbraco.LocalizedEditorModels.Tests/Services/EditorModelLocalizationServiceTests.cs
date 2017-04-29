@@ -221,6 +221,44 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
         }
 
         [Test]
+        public void LocalizeModel_Localizes_Property_Descriptions_With_Markdown_To_HTML()
+        {
+            var markdownEditorModelLocalizationService = new EditorModelLocalizationService(_localizationKeyService, _localizationKeyTextService, new MarkdownPropertyDescriptionFormatService());
+
+            var props = new List<ContentPropertyDisplay>()
+            {
+                new ContentPropertyDisplay
+                {
+                    Alias = "propertyWithLinkToUmbracoTv",
+                    Label = "Property With Link To Umbraco TV",
+                    Description = "Find out more at [Umbraco.TV](http://www.umbraco.tv/)",
+                    HideLabel = false
+                }
+            };
+            var tabs = new List<Tab<ContentPropertyDisplay>>
+            {
+                new Tab<ContentPropertyDisplay>()
+                {
+                    Alias = "Tab",
+                    Label = "Tab",
+                    Properties = props
+                }
+            };
+
+            var model = new ContentItemDisplay()
+            {
+                ContentTypeAlias = "textPage",
+                Tabs = tabs
+            };
+
+            markdownEditorModelLocalizationService.LocalizeModel(model);
+
+            var firstProperty = model.Properties.FirstOrDefault();
+            Assert.IsNotNull(firstProperty.Description);
+            Assert.AreEqual("<p>Find out more at <a target=\"_blank\" href=\"http://www.umbraco.tv/\">Umbraco.TV</a></p>", firstProperty.Description);
+        }
+
+        [Test]
         public void LocalizeModel_Localizes_Tab_Labels()
         {
             var props = new List<ContentPropertyDisplay>()
