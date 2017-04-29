@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Our.Umbraco.LocalizedEditorModels")]
+[assembly: AssemblyTitle("Our.Umbraco.LocalizedEditorModels.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Our.Umbraco.LocalizedEditorModels")]
+[assembly: AssemblyProduct("Our.Umbraco.LocalizedEditorModels.Web")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,6 +20,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("154b3a05-5ee2-465f-91c9-989933c41392")]
-[assembly: InternalsVisibleTo("Our.Umbraco.LocalizedEditorModels.Tests")]
-[assembly: InternalsVisibleTo("Our.Umbraco.LocalizedEditorModels.Web")]
+[assembly: Guid("250c904d-1eae-4b4d-b928-3bcc80e1e669")]
