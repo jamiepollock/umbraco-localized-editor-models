@@ -135,5 +135,29 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
 
             Assert.AreEqual(default(string), localizedText);
         }
+
+        [Test]
+        public void LocalizeFirstAvailableKey_Returns_FallbackValue_If_Not_Found_And_FallbackValue_Is_Provided()
+        {
+            var defaultCulture = CultureInfo.GetCultureInfo("en-US");
+            var expectedCulture = CultureInfo.GetCultureInfo("en-GB");
+
+            var textService = new LocalizedTextService(
+                new Dictionary<CultureInfo, IDictionary<string, IDictionary<string, string>>>
+                {
+                    {
+                        expectedCulture, new Dictionary<string, IDictionary<string, string>>()
+                    }
+                }, Mock.Of<ILogger>());
+            var editorModelLocalizationService = new EditorModelLocalizationService(textService, expectedCulture);
+            var localizationKeys = new LocalizationKey[] {
+                new LocalizationKey("textPage_property_labels", "bgColor"),
+                new LocalizationKey("property_labels", "bgColor")
+            };
+
+            var localizedText = editorModelLocalizationService.LocalizeFirstAvailableKey(localizationKeys, "Background Colour");
+
+            Assert.AreEqual("Background Colour", localizedText);
+        }
     }
 }

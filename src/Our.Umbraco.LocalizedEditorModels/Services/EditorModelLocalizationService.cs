@@ -20,7 +20,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Services
             return _localizedTextService.Localize(localizationKey.ToUmbracoLocalizationKey(), _backofficeUserCultureInfo);
         }
 
-        internal string LocalizeFirstAvailableKey(IEnumerable<LocalizationKey> localizationKeys)
+        internal string LocalizeFirstAvailableKey(IEnumerable<LocalizationKey> localizationKeys, string fallbackValue = default(string))
         {
             foreach (var key in localizationKeys)
             {
@@ -33,7 +33,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Services
                 }
             }
 
-            return default(string);
+            return fallbackValue;
         }
     }
 }
