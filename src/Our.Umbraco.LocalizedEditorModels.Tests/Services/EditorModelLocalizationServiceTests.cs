@@ -36,6 +36,12 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
                                 }
                             },
                             {
+                                "property_descriptions", new Dictionary<string, string>
+                                {
+                                    {"bgColor", "Sets the background colour for the page"}
+                                }
+                            },
+                            {
                                 "textPage_property_labels", new Dictionary<string, string>
                                 {
                                     {"bgColor", "Text Page Background Colour"},
@@ -130,6 +136,76 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
 
             Assert.AreEqual("Text Page Background Colour", model.Properties.FirstOrDefault(x => x.Alias == "bgColor").Label);
             Assert.AreEqual("Favorite New Items", model.Properties.FirstOrDefault(x => x.Alias == "favoriteNewsItems").Label);
+        }
+
+        [Test]
+        public void LocalizeModel_Property_Which_Were_Null_Before_Still_Return_Null_If_Localization_Found()
+        {
+            var props = new List<ContentPropertyDisplay>()
+            {
+                new ContentPropertyDisplay
+                {
+                    Alias = "emptyDescriptionProperty",
+                    Label = "No Description Property",
+                    HideLabel = false
+                }
+            };
+            var tabs = new List<Tab<ContentPropertyDisplay>>
+            {
+                new Tab<ContentPropertyDisplay>()
+                {
+                    Alias = "Tab",
+                    Label = "Tab",
+                    Properties = props
+                }
+            };
+
+            var model = new ContentItemDisplay()
+            {
+                ContentTypeAlias = "textPage",
+                Tabs = tabs
+            };
+
+            _editorModelLocalizationService.LocalizeModel(model);
+
+            Assert.IsNull(model.Properties.FirstOrDefault(x => x.Alias == "emptyDescriptionProperty").Description);
+        }
+
+
+        [Test]
+        public void LocalizeModel_Localizes_Property_Descriptions()
+        {
+            var props = new List<ContentPropertyDisplay>()
+            {
+                new ContentPropertyDisplay
+                {
+                    Alias = "bgColor",
+                    Label = "Background Color",
+                    Description = "Sets the background color for the page",
+                    HideLabel = false
+                }
+            };
+            var tabs = new List<Tab<ContentPropertyDisplay>>
+            {
+                new Tab<ContentPropertyDisplay>()
+                {
+                    Alias = "Tab",
+                    Label = "Tab",
+                    Properties = props
+                }
+            };
+
+            var model = new ContentItemDisplay()
+            {
+                ContentTypeAlias = "textPage",
+                Tabs = tabs
+            };
+
+            _editorModelLocalizationService.LocalizeModel(model);
+
+            var firstProperty = model.Properties.FirstOrDefault();
+            Assert.IsNotNull(firstProperty.Description);
+            Assert.AreEqual("Sets the background colour for the page", firstProperty.Description);
         }
     }
 }
