@@ -17,7 +17,7 @@
   <!-- SHARED PROPERTIES -->
   <PropertyGroup>
     <PackageName>Our.Umbraco.LocalizedEditorModels</PackageName>
-    <MinUmbracoVersion>7.5.4</MinUmbracoVersion>
+    <MinUmbracoVersion>7.4.0</MinUmbracoVersion>
     <Readme>An Umbraco v7 backoffice plugin to add localization support for property editor labels amp; descriptions and tabs.</Readme>
     <AuthorName>Jamie Pollock</AuthorName>
     <AuthorUrl>https://github.com/jamiepollock/Umbraco-Localized-Editor-Models/graphs/contributors</AuthorUrl>
