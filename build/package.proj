@@ -78,6 +78,7 @@
     <ArtifactsDir>$(RootDir)\artifacts</ArtifactsDir>
     <CoreProjectDir>$(RootDir)\src\Our.Umbraco.LocalizedEditorModels</CoreProjectDir>
     <CoreTestsProjectDir>$(RootDir)\src\Our.Umbraco.LocalizedEditorModels.Tests</CoreTestsProjectDir>
+    <WebProjectDir>$(RootDir)\src\Our.Umbraco.LocalizedEditorModels.Web</WebProjectDir>
   </PropertyGroup>
 
   <!-- TARGETS -->
@@ -107,12 +108,17 @@
     <FileUpdate Encoding="ASCII" Files="$(CoreTestsProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyVersion(&quot;$(FileVersion)&quot;)]" />
     <FileUpdate Encoding="ASCII" Files="$(CoreTestsProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyFileVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyFileVersion(&quot;$(FileVersion)&quot;)]" />
     <FileUpdate Encoding="ASCII" Files="$(CoreTestsProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyInformationalVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyInformationalVersion(&quot;$(ProductVersion)&quot;)]" />
+
+    <FileUpdate Encoding="ASCII" Files="$(WebProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyVersion(&quot;$(FileVersion)&quot;)]" />
+    <FileUpdate Encoding="ASCII" Files="$(WebProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyFileVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyFileVersion(&quot;$(FileVersion)&quot;)]" />
+    <FileUpdate Encoding="ASCII" Files="$(WebProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyInformationalVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyInformationalVersion(&quot;$(ProductVersion)&quot;)]" />
   </Target>
 
   <!-- COMPILE -->
   <Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
     <MSBuild Projects="$(CoreProjectDir)\Our.Umbraco.LocalizedEditorModels.csproj" Properties="Configuration=$(BuildConfig)" />
-    <MSBuild Projects="$(CoreTestsProjectDir)\Our.Umbraco.LocalizedEditorModels.Tests.csproj" Properties="Configuration=$(BuildConfig)" />  
+    <MSBuild Projects="$(CoreTestsProjectDir)\Our.Umbraco.LocalizedEditorModels.Tests.csproj" Properties="Configuration=$(BuildConfig)" />
+    <MSBuild Projects="$(WebProjectDir)\Our.Umbraco.LocalizedEditorModels.Web.csproj" Properties="Configuration=$(BuildConfig)" />
   </Target>
 
   <!-- PREPARE FILES -->
@@ -120,7 +126,9 @@
     <ItemGroup>
       <!-- Shared -->      
       <BinFiles Include="$(CoreProjectDir)\bin\$(BuildConfig)\Our.Umbraco.LocalizedEditorModels.dll" />
-      <PdbFiles Include="$(CoreProjectDir)\bin\$(BuildConfig)\Our.Umbraco.LocalizedEditorModels.pdb" />
+      <PdbFiles Include="$(CoreProjectDir)\bin\$(BuildConfig)\Our.Umbraco.LocalizedEditorModels.pdb" />      
+      <BinFiles Include="$(WebProjectDir)\bin\$(BuildConfig)\Our.Umbraco.LocalizedEditorModels.Web.dll" />
+      <PdbFiles Include="$(WebProjectDir)\bin\$(BuildConfig)\Our.Umbraco.LocalizedEditorModels.Web.pdb" />
 
       <!-- Umbraco specific -->
       <UmbracoInstallerLogo Include="$(MSBuildProjectDirectory)\assets\icon\umbraco-localizededitormodels-32.png"/>
