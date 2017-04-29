@@ -46,6 +46,18 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
                                 {
                                     {"bgColor", "Text Page Background Colour"},
                                 }
+                            },
+                            {
+                                "tab_labels", new Dictionary<string, string>
+                                {
+                                    {"CenterContent", "Centre Content"},
+                                }
+                            },
+                            {
+                                "textPage_tab_labels", new Dictionary<string, string>
+                                {
+                                    {"Tab", "Text Page Tab"},
+                                }
                             }
                         }
                     }
@@ -83,7 +95,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
                     Alias = "Tab",
                     Label = "Tab",
                     Properties = props
-                }
+                },
             };
 
             var model = new ContentItemDisplay()
@@ -206,6 +218,52 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
             var firstProperty = model.Properties.FirstOrDefault();
             Assert.IsNotNull(firstProperty.Description);
             Assert.AreEqual("Sets the background colour for the page", firstProperty.Description);
+        }
+
+        [Test]
+        public void LocalizeModel_Localizes_Tab_Labels()
+        {
+            var props = new List<ContentPropertyDisplay>()
+            {
+                new ContentPropertyDisplay
+                {
+                    Alias = "bgColor",
+                    Label = "Background Color",
+                    Description = "Sets the background color for the page",
+                    HideLabel = false
+                }
+            };
+            var tabs = new List<Tab<ContentPropertyDisplay>>
+            {
+                new Tab<ContentPropertyDisplay>()
+                {
+                    Alias = "Tab",
+                    Label = "Tab",
+                    Properties = props
+                },
+                new Tab<ContentPropertyDisplay>()
+                {
+                    Alias = "CenterContent",
+                    Label = "Center Content",
+                    Properties = props
+                }
+            };
+
+            var model = new ContentItemDisplay()
+            {
+                ContentTypeAlias = "textPage",
+                Tabs = tabs
+            };
+
+            _editorModelLocalizationService.LocalizeModel(model);
+
+            var firstTab = model.Tabs.FirstOrDefault();
+            Assert.IsNotNull(firstTab.Label);
+            Assert.AreEqual("Text Page Tab", firstTab.Label);
+
+            var secondTab = model.Tabs.ElementAt(1);
+            Assert.IsNotNull(secondTab.Label);
+            Assert.AreEqual("Centre Content", secondTab.Label);
         }
     }
 }

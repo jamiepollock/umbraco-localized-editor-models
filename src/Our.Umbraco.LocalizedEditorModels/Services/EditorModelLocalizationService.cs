@@ -32,6 +32,12 @@ namespace Our.Umbraco.LocalizedEditorModels.Services
                     }
                 }
             }
+
+            foreach (var tab in model.Tabs)
+            {
+                var tabLabelKeys = _keyService.GetLocalizationKeysForTabLabel(tab.Alias, model.ContentTypeAlias);
+                tab.Label = _keyTextService.LocalizeFirstAvailableKey(tabLabelKeys, tab.Label);
+            }
         }
     }
 }
