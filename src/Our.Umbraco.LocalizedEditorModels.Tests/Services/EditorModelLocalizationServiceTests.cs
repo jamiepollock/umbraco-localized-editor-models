@@ -15,23 +15,11 @@ namespace Our.Umbraco.LocalizedEditorModels.Tests.Services
         [Test]
         public void LocalizeKey_Returns_Value_If_Found()
         {
-            var defaultCulture = CultureInfo.GetCultureInfo("en-US");
             var expectedCulture = CultureInfo.GetCultureInfo("en-GB");
 
             var textService = new LocalizedTextService(
                 new Dictionary<CultureInfo, IDictionary<string, IDictionary<string, string>>>
                 {
-                    {
-                        defaultCulture, new Dictionary<string, IDictionary<string, string>>
-                        {
-                            {
-                                "property_labels", new Dictionary<string, string>
-                                {
-                                    {"bgColor", "Background Color"},
-                                }
-                            }
-                        }
-                    },
                     {
                         expectedCulture, new Dictionary<string, IDictionary<string, string>>
                         {
