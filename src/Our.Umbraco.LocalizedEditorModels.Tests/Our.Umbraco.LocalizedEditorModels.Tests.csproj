@@ -209,9 +209,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="Services\EditorModelLocalizationKeyServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EditorModelLocalizationServiceTests.cs" />
+    <Compile Include="Services\LocalizationKeyServiceTests.cs" />
+    <Compile Include="Services\LocalizationKeyTextServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Our.Umbraco.LocalizedEditorModels\Our.Umbraco.LocalizedEditorModels.csproj">

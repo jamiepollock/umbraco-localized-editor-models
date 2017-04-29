@@ -206,8 +206,9 @@
     <Compile Include="Models\LocalizationKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="Services\EditorModelLocalizationKeyService.cs" />
     <Compile Include="Services\EditorModelLocalizationService.cs" />
+    <Compile Include="Services\LocalizationKeyService.cs" />
+    <Compile Include="Services\LocalizationKeyTextService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
