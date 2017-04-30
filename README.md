@@ -89,9 +89,11 @@ In the above example `homePage` would get a different property description for `
 
 ## Contributing
 
-Found a bug or want to provide some feedback? [Open a ticket](../../issues/new), be sure to check [existing tickets](../../issues) first. :)
+Found a bug? [Open a ticket](../../issues/new), be sure to check [existing tickets](../../issues) first. :)
 
 Or if you're feeling adventurous [submit a Pull Request](../../pulls).
+
+Want to give some feedback? check out the [Feedback forum](https://our.umbraco.org/projects/backoffice-extensions/localized-editor-models/feedback/) on Our Umbraco.
 
 ## Special Thanks
 
