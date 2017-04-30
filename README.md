@@ -6,7 +6,7 @@ Localized values can be set generally and also on a per type alias basis. Markdo
 
 [![NuGet release](https://img.shields.io/nuget/v/Our.Umbraco.LocalizedEditorModels.svg)](https://www.nuget.org/packages/Our.Umbraco.LocalizedEditorModels)
 [![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.org/projects/backoffice-extensions/localized-editor-models/)
-[![Appveyor Build](https://ci.appveyor.com/api/projects/status/kaenhf4cy1b6ixaj?svg=true)]
+[![Build status](https://ci.appveyor.com/api/projects/status/8c38iaeyq5ib25hp?svg=true)](https://ci.appveyor.com/project/jamiepollock/umbraco-localized-editor-models)
 
 ## Installation
 
