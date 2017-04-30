@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Specialized;
 
 namespace Our.Umbraco.LocalizedEditorModels.Web.Configuration
@@ -30,6 +32,7 @@ namespace Our.Umbraco.LocalizedEditorModels.Web.Configuration
 
 
         public bool IsEnabled { get; private set; }
+        [JsonConverter(typeof(StringEnumConverter))]
         public PropertyDescriptionFormats PropertyDescriptionFormat { get; private set; }
     }
 }

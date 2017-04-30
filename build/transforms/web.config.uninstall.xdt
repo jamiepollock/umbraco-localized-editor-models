@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <appSettings>
+    <add key="Our.Umbraco.LocalizedEditorModels:Enabled" xdt:Locator="Match(key)" xdt:Transform="Remove" />
+    <add key="Our.Umbraco.LocalizedEditorModels:PropertyDescriptionFormat" xdt:Locator="Match(key)" xdt:Transform="Remove" />
+  </appSettings>
+</configuration>

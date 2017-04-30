@@ -1,0 +1,12 @@
+﻿<div ng-controller="Our.Umbraco.LocalizedEditorModels.DashboardController">
+    <table class="table table-bordered table-condensed" ng-if="config">
+        <tr>
+            <th>Enabled</th>
+            <td>{{ config.IsEnabled ? "Yes" : "No" }}</td>
+        </tr>
+        <tr>
+            <th>Property Description Format</th>
+            <td>{{ config.PropertyDescriptionFormat }}</td>
+        </tr>
+    </table>
+</div>

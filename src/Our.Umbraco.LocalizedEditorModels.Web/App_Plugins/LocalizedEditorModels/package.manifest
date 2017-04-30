@@ -1,0 +1,6 @@
+﻿{
+  "javascript": [
+    "/app_plugins/LocalizedEditorModels/js/resources.js",
+    "/app_plugins/LocalizedEditorModels/js/controllers.js"
+  ]
+}
