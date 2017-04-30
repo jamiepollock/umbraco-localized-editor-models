@@ -30,7 +30,7 @@
 
   <Actions>
     <Action runat="install" undo="true" alias="LEM.TransformConfig" file="~/web.config" xdtfile="~/app_plugins/LocalizedEditorModels/Install/web.config"></Action>
-    <Action runat="install" undo="true" alias="LEM.TransformConfig" file="~/config/dashboard.config" xdtfile="~/app_plugins/LocalizedEditorModels/Install/dashboard.config"></Action>
+    <Action runat="install" undo="true" alias="LEM.TransformConfig" file="~/config/dashboard.config" xdtfile="~/app_plugins/LocalizedEditorModels/Install/config/dashboard.config"></Action>
   </Actions>
 
   <control />
