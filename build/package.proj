@@ -18,7 +18,7 @@
   <PropertyGroup>
     <PackageName>Our.Umbraco.LocalizedEditorModels</PackageName>
     <MinUmbracoVersion>7.4.0</MinUmbracoVersion>
-    <Readme>An Umbraco v7 backoffice plugin to add localization support to Content, Media &amp; Members for property editor labels &amp; descriptions and tabs.</Readme>
+    <Readme>An Umbraco v7 backoffice plugin to add localization support to Content, Media &amp; Members for property labels, property descriptions and tabs.</Readme>
     <AuthorName>Jamie Pollock</AuthorName>
     <AuthorUrl>https://github.com/jamiepollock/Umbraco-Localized-Editor-Models/graphs/contributors</AuthorUrl>
     <IconUrl>https://raw.githubusercontent.com/jamiepollock/Umbraco-Localized-Editor-Models/master/build/assets/icon/umbraco-localizededitormodels-128.png</IconUrl>
@@ -32,9 +32,9 @@
     <PackageId>Our.Umbraco.LocalizedEditorModels</PackageId>
     <Copyright>Copyright &#169; Jamie Pollock and contributors.</Copyright>
     <Owners>Jamie Pollock</Owners>
-    <Description>An Umbraco v7 backoffice plugin to add localization support to Content, Media &amp; Members for property editor labels &amp; descriptions and tabs.</Description>
-    <Tags>umbraco umbraco-localization</Tags>
-    <Language>en-GB</Language>
+    <Description>An Umbraco v7 backoffice plugin to add localization support to Content, Media &amp; Members for property labels, property descriptions and tabs.</Description>
+    <Tags>umbraco umbraco-localization umbraco-backoffice</Tags>
+    <Language>en-US</Language>
     <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
   </PropertyGroup>
 
