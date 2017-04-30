@@ -9,7 +9,9 @@ using Umbraco.Core.Logging;
 namespace Our.Umbraco.LocalizedEditorModels.Web.PackageActions
 {
     /// <summary>
-    /// Modified version of Tim TimGeyssens' https://github.com/TimGeyssens/UmbracoPageNotFoundManager/blob/e4861c2a298c977842c73dd1683a297f4d7b3198/PageNotFoundManager/Umbraco/Installer/PackageActions.cs
+    /// Package Action which supports the use of .xdt files during Umbraco Package installation (not required when installed by NuGet.)
+    ///
+    /// Modified version of Tim Geyssens' https://github.com/TimGeyssens/UmbracoPageNotFoundManager/blob/e4861c2a298c977842c73dd1683a297f4d7b3198/PageNotFoundManager/Umbraco/Installer/PackageActions.cs
     /// </summary>
     public class TransformConfigPackageAction : IPackageAction
     {
@@ -22,27 +24,22 @@ namespace Our.Umbraco.LocalizedEditorModels.Web.PackageActions
         {
             try
             {
-                //The config file we want to modify
-                var file = xmlData.Attributes.GetNamedItem("file").Value;
+                var configFileAttributeValue = xmlData.Attributes.GetNamedItem("file").Value;
+                var configFileAbsoluteVirtualPath = VirtualPathUtility.ToAbsolute(configFileAttributeValue);
 
-                var sourceDocFileName = VirtualPathUtility.ToAbsolute(file);
-
-                //The xdt file used for tranformation 
-                //var xdtfile = xmlData.Attributes.GetNamedItem("xdtfile").Value;
                 var fileEnd = "install.xdt";
                 if (uninstall)
                 {
                     fileEnd = string.Format("un{0}", fileEnd);
                 }
 
-                var xdtfile = string.Format("{0}.{1}", xmlData.Attributes.GetNamedItem("xdtfile").Value, fileEnd);
-                string xdtFileName = VirtualPathUtility.ToAbsolute(xdtfile);
+                var xdtfileAttributeValue = string.Format("{0}.{1}", xmlData.Attributes.GetNamedItem("xdtfile").Value, fileEnd);
+                var xdtFileAbsoluteVirtualPath = VirtualPathUtility.ToAbsolute(xdtfileAttributeValue);
 
-                // The translation at-hand
                 using (var xmlDoc = new XmlTransformableDocument())
                 {
-                    var xdtMappedFilePath = HttpContext.Current.Server.MapPath(xdtFileName);
-                    var xmlMappedFilePath = HttpContext.Current.Server.MapPath(sourceDocFileName);
+                    var xmlMappedFilePath = HttpContext.Current.Server.MapPath(configFileAbsoluteVirtualPath);
+                    var xdtMappedFilePath = HttpContext.Current.Server.MapPath(xdtFileAbsoluteVirtualPath);
                     xmlDoc.PreserveWhitespace = true;
                     xmlDoc.Load(xmlMappedFilePath);
 
