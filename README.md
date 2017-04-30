@@ -4,11 +4,15 @@ An Umbraco package for localizing properties & tabs for Document Types, Media Ty
 
 Localized values can be set generally and also on a per type alias basis. Markdown support is also optionally included too.
 
+[![NuGet release](https://img.shields.io/nuget/v/Our.Umbraco.LocalizedEditorModels.svg)](https://www.nuget.org/packages/Our.Umbraco.LocalizedEditorModels)
+[![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.org/projects/backoffice-extensions/localized-editor-models/)
+[![Appveyor Build](https://ci.appveyor.com/api/projects/status/kaenhf4cy1b6ixaj?svg=true)]
+
 ## Installation
 
 **Note:** This package supports Umbraco v7.4+.
 
-This package can be installed over on NuGet, via Our Umbraco or within your Umbraco installation via the package manager.
+This package can be installed via [NuGet](https://www.nuget.org/packages/Our.Umbraco.LocalizedEditorModels), [Our Umbraco](https://our.umbraco.org/projects/backoffice-extensions/localized-editor-models/) or the package manager within your Umbraco installation.
 
 Either way two new `appSettings` entries are added to the root Web.Config of your Umbraco application.
 
